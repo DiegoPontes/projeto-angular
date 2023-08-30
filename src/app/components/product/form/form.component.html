@@ -1,0 +1,61 @@
+<div class="card">
+    <div class="card-body">
+        <form [formGroup]="form" (keydown.enter)="$event.preventDefault()">
+            <div class="row">
+                <div class="col-12 col-md-6 mt-3">
+                    <div class="form-group">
+                        <label for="title" class="form-label form-required">Title</label>
+                        <input type="text" formControlName="title" class="form-control"
+                            [ngClass]="{'is-invalid': showErrorField('title')}" id="title" aria-describedby="titleHelp"
+                            placeholder="Product title">
+                        <div *ngIf="hasError('title', 'required')" class="invalid-feedback"> The title field is
+                            mandatory. </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 mt-3">
+                    <div class="form-group">
+                        <label for="description" class="form-label form-required">Description</label>
+                        <input type="text" formControlName="description" class="form-control"
+                            [ngClass]="{'is-invalid': showErrorField('description')}" id="description"
+                            aria-describedby="descriptionHelp" placeholder="Product description">
+                        <div *ngIf="hasError('description', 'required')" class="invalid-feedback"> The description field
+                            is mandatory. </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 mt-3">
+                    <div class="form-group">
+                        <label for="price" class="form-label form-required">Price</label>
+                        <input type="number" formControlName="price" class="form-control"
+                            [ngClass]="{'is-invalid': showErrorField('price')}" id="price" aria-describedby="priceHelp"
+                            placeholder="Product price">
+                        <div *ngIf="hasError('price', 'required')" class="invalid-feedback"> The price field is
+                            mandatory. </div>
+                        <div *ngIf="hasError('price', 'min')" class="invalid-feedback"> Price cannot be less than zero.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 mt-3">
+                    <div class="form-group">
+                        <label for="discountPercentage" class="form-label">Discount Percentage (%)</label>
+                        <input type="number" formControlName="discountPercentage" class="form-control"
+                            [ngClass]="{'is-invalid': showErrorField('discountPercentage')}" id="discountPercentage"
+                            aria-describedby="discountPercentageHelp" placeholder="Product discount percentage">
+                        <div *ngIf="hasError('discountPercentage', 'min')" class="invalid-feedback"> Discount percentage
+                            field cannot be less than zero. </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mt-4">
+                    <a [routerLink]="['/product']" class="btn btn-md btn-secondary float-start">
+                        {{showButton ? 'Cancel' : 'Back'}}
+                    </a>
+                    <button *ngIf="showButton" type="submit" class="btn btn-mb btn-success float-end"
+                        (click)="onSubmit()" [disabled]="form.invalid">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

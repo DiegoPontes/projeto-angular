@@ -1,0 +1,15 @@
+<div class="row text-center">
+    <div *ngFor="let product of productList$ | async" class="col-md-4 d-flex justify-content-center" style="padding-bottom: 30px;">
+        <div class="card" style="width: 18rem;">
+            <img src="{{product.thumbnail}}" class="card-img-top border-bottom" height="164px" width="253px" alt="">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.title | titlecase }}</h5>
+                <p class="card-text">{{ product.price | currency }}</p>
+                <a [routerLink]="['/product/edit', product.id]"  title="Edit" class="btn btn-sm btn-primary me-2">Edit</a>
+                <a [routerLink]="['/product/view', product.id]"  title="View" class="btn btn-sm btn-secondary me-2">View</a>
+                <button type="button" (click)="delete(product.id, product.title)"
+                    class="btn btn-sm btn-danger" title="Delete">Delele</button>
+            </div>
+        </div>
+    </div>
+</div>
